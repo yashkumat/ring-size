@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ring Size</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #ring{
+            background-color: transparent;
+            border-radius: 50%;
+            border: 1px solid black;
+            width: 13mm;
+            height: 13mm;
+        }
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s; 
+            transition: opacity .2s;
+        }
+        .table-item-heading{
+            padding: 10px 20px;
+        }
+        .table-item{
+            padding: 10px 20px;
+        }
+        .container-item{
+            margin: 25px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="container-item" id="ring">
+            </div>
+            <div class="container-item" id="resut">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="table-item-heading">Diameter</th>
+                            <th class="table-item-heading">Circumference</th>
+                            <th class="table-item-heading">India</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="diameter" class="table-item">13 mm</td>
+                            <td id="circumference" class="table-item">41mm</td>
+                            <td id="india" class="table-item">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container-item" id="scale">
+                <input type="range" min="41" max="76" class="slider" id="slider" value="41">
+            </div>
+    </div>
+
+    <script>
+        var slider = document.getElementById("slider");
+        var ring = document.getElementById("ring");
+        var diameter = document.getElementById("diameter");
+        var circumference = document.getElementById("circumference");
+        var india = document.getElementById("india");
+
+        slider.oninput = function() {
+            ring.style.width = (this.value / Math.PI) + 'mm';
+            ring.style.height = (this.value / Math.PI) + 'mm';
+            diameter.innerHTML = Math.floor((this.value / Math.PI)) + 'mm';
+            circumference.innerHTML = this.value + 'mm';
+            india.innerHTML = this.value-40;
+        }
+    </script>
+</body>
+</html>
